@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -33,11 +33,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Syncfusion.Grid.Windows, Version=19.3460.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
-    <Reference Include="Syncfusion.Shared.Base, Version=19.3460.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Licensing, Version=19.3460.0.43, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Licensing.19.3.0.43\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Base, Version=19.3460.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Shared.Base.19.3.0.43\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Shared.Windows, Version=19.3460.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Tools.Base, Version=19.3460.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Tools.Windows, Version=19.3460.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,12 +55,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs" />
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Controladores\DetallesController.cs" />
+    <Compile Include="Controladores\EstadoController.cs" />
+    <Compile Include="Controladores\LoginController.cs" />
+    <Compile Include="Controladores\TicketController.cs" />
+    <Compile Include="Controladores\TipoController.cs" />
+    <Compile Include="Modelos\DAO\Conexion.cs" />
+    <Compile Include="Modelos\DAO\EstadoDAO.cs" />
+    <Compile Include="Modelos\DAO\TicketDAO.cs" />
+    <Compile Include="Modelos\DAO\TipoDAO.cs" />
+    <Compile Include="Modelos\DAO\UsuarioDAO.cs" />
+    <Compile Include="Modelos\Entidades\Estado.cs" />
+    <Compile Include="Modelos\Entidades\Ticket.cs" />
+    <Compile Include="Modelos\Entidades\Tipos.cs" />
+    <Compile Include="Modelos\Entidades\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\DetallesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\DetallesView.Designer.cs">
+      <DependentUpon>DetallesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EstadosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\EstadosView.Designer.cs">
+      <DependentUpon>EstadosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\MenuView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\MenuView.Designer.cs">
+      <DependentUpon>MenuView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\TicketsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\TicketsView.Designer.cs">
+      <DependentUpon>TicketsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\TiposView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\TiposView.Designer.cs">
+      <DependentUpon>TiposView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,7 +115,28 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Vista\DetallesView.resx">
+      <DependentUpon>DetallesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\EstadosView.resx">
+      <DependentUpon>EstadosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\MenuView.resx">
+      <DependentUpon>MenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\TicketsView.resx">
+      <DependentUpon>TicketsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\TiposView.resx">
+      <DependentUpon>TiposView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,6 +149,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tarea-completada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boleto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\servicios-de-reparacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trabajador.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resolviendo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reloj-de-arena.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\accesible.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
